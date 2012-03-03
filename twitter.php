@@ -3,7 +3,6 @@ session_start();
 require "config.php";
 require "libs/twitteroauth/twitteroauth.php";
 require "classes/TwitterConf.class.php";
-header('Content-Type: text/html; charset=utf-8');
 if(isset($_GET["id"])) {
 	$id = preg_replace("/[^a-zA-Z0-9-]/", "", $_GET['id']);
 	
