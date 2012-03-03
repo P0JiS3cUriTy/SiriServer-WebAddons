@@ -2,5 +2,7 @@
 nbproject
 *.sqlite3
 *.log
+*.pem
+*.crt
 twitter.conf
 config.php

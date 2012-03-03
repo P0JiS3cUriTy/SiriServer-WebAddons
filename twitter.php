@@ -26,14 +26,12 @@ if(isset($_GET["id"])) {
 		echo "Erreur de communication avec Twitter.";
 	}	
 }
-
 else if(isset($_GET["oauth_token"]) && isset($_GET["oauth_verifier"])) {
 
 	if(!isset($_SESSION["id"]) || !isset($_SESSION["oauth_token"]) || !isset($_SESSION["oauth_token_secret"])) {
 		echo "Vous devez utilisez un navigateur supportant les cookies...";
 		exit;
 	}
-
 
 	/* Create TwitteroAuth object with app key/secret and token key/secret from default phase */
 	$connection = new TwitterOAuth(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, $_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
@@ -58,7 +56,6 @@ else if(isset($_GET["oauth_token"]) && isset($_GET["oauth_verifier"])) {
 	} else {
 		echo "Erreur de communication avec Twitter.";
 	}
-
 }
 else {
 	echo "Requête inconnue";
