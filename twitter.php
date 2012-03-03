@@ -5,7 +5,6 @@ require "libs/twitteroauth/twitteroauth.php";
 require "classes/TwitterConf.class.php";
 header('Content-Type: text/html; charset=utf-8');
 if(isset($_GET["id"])) {
-
 	$id = preg_replace("/[^a-zA-Z0-9-]/", "", $_GET['id']);
 	
 	/* Connect to Twitter and ask for token */
@@ -23,8 +22,8 @@ if(isset($_GET["id"])) {
 		header("Location: ".$url.'&oauth_access_type=write');
 		exit;
 	} else {
-		echo "Erreur de communication avec Twitter.";
-	}	
+		$message = "Erreur de communication avec Twitter.";
+	}
 }
 else if(isset($_GET["oauth_token"]) && isset($_GET["oauth_verifier"])) {
 
@@ -45,18 +44,23 @@ else if(isset($_GET["oauth_token"]) && isset($_GET["oauth_verifier"])) {
 	unset($_SESSION["oauth_token"]);
 	unset($_SESSION["oauth_token_secret"]);
 
-	if($connection->http_code == 200) {
-		echo $id;
-		print_r($access_token);
-		
+	if($connection->http_code == 200) {		
 		$twitterConf = new TwitterConf("twitter.conf");
 		$twitterConf->setToken($id, $access_token["oauth_token"], $access_token["oauth_token_secret"]);
 		$twitterConf->save();
-		echo "Votre compte a bien été enregistré";
+		$message = "Votre compte a bien été enregistré.";
 	} else {
-		echo "Erreur de communication avec Twitter.";
+		$message = "Erreur de communication avec Twitter.";
 	}
 }
 else {
-	echo "Requête inconnue";
+	$message = "Requête inconnue.";
+}
+
+if(isset($message)) {
+	require 'classes/Page.class.php';
+	$page = new Page(SERVER_NAME);
+	$page->printHeader();
+	echo '<p>'.$message.'</p>';
+	$page->printFooter();
 }
