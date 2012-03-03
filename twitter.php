@@ -6,22 +6,26 @@ require "classes/TwitterConf.class.php";
 if(isset($_GET["id"])) {
 	$id = preg_replace("/[^a-zA-Z0-9-]/", "", $_GET['id']);
 	
-	/* Connect to Twitter and ask for token */
-	$connection = new TwitterOAuth(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET);
-	$request_token = $connection->getRequestToken(TWITTER_CALLBACK);
-
-	/* Save data in Session */
-	$_SESSION['id'] = $id;
-	$_SESSION['oauth_token'] = $token = $request_token['oauth_token'];
-	$_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
-
-	// if Success, redirect to Twitter
-	if($connection->http_code == 200) {
-		$url = $connection->getAuthorizeURL($token,false);
-		header("Location: ".$url.'&oauth_access_type=write');
-		exit;
+	if(empty($id)) {
+		$message = "Vous devez activer iCloud pour utiliser ce service.";
 	} else {
-		$message = "Erreur de communication avec Twitter.";
+		/* Connect to Twitter and ask for token */
+		$connection = new TwitterOAuth(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET);
+		$request_token = $connection->getRequestToken(TWITTER_CALLBACK);
+
+		/* Save data in Session */
+		$_SESSION['id'] = $id;
+		$_SESSION['oauth_token'] = $token = $request_token['oauth_token'];
+		$_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
+
+		// if Success, redirect to Twitter
+		if($connection->http_code == 200) {
+			$url = $connection->getAuthorizeURL($token,false);
+			header("Location: ".$url.'&oauth_access_type=write');
+			exit;
+		} else {
+			$message = "Erreur de communication avec Twitter.";
+		}
 	}
 }
 else if(isset($_GET["oauth_token"]) && isset($_GET["oauth_verifier"])) {

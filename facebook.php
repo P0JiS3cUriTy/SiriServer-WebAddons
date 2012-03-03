@@ -6,10 +6,15 @@ require "classes/FacebookConf.class.php";
 if(isset($_GET['id']))
 {
 	$id = preg_replace("/[^a-zA-Z0-9-_]/", "", $_GET['id']);
-	$_SESSION['id'] = $id;
-	$url = 'https://graph.facebook.com/oauth/authorize?client_id='.FACEBOOK_APPID.'&redirect_uri='.FACEBOOK_CALLBACK.'&scope=publish_stream';
-	header("Location: ".$url);
-	exit;
+
+	if(empty($id)) {
+		$message = "Vous devez activer iCloud pour utiliser ce service.";
+	} else {
+		$_SESSION['id'] = $id;
+		$url = 'https://graph.facebook.com/oauth/authorize?client_id='.FACEBOOK_APPID.'&redirect_uri='.FACEBOOK_CALLBACK.'&scope=publish_stream';
+		header("Location: ".$url);
+		exit;
+	}
 }
 else if(isset($_GET['code'])) {
 
