@@ -1,0 +1,6 @@
+.DS_Store
+nbproject
+*.sqlite3
+*.log
+twitter.conf
+config.php
