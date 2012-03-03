@@ -4,5 +4,5 @@ nbproject
 *.log
 *.pem
 *.crt
-twitter.conf
+*.conf
 config.php
