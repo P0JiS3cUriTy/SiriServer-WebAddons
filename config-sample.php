@@ -1,4 +1,6 @@
 <?php
+define("LANG_DIRECTORY", dirname(__FILE__).'/lang/');
+
 define("SERVER_NAME","SiriServer");
 define("SERVER_HOST","");
 define("SERVER_PORT", "443");
