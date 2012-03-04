@@ -2,7 +2,7 @@
 
 SiriServer-WebAddons is a PHP script to use with [SiriServer](https://github.com/cedbv/siriserver).
 
-This addons is required to use the [twitter.py plugin](https://github.com/cedbv/SiriServer/blob/master/plugins/twitter.py) and the [twitter.py plugin](https://github.com/cedbv/SiriServer/blob/master/plugins/facebook.py).
+This addons is required to use the [twitter.py](https://github.com/cedbv/SiriServer/blob/master/plugins/twitter.py) and the [facebook.py](https://github.com/cedbv/SiriServer/blob/master/plugins/facebook.py) plugins.
 
 ## How To install
 
