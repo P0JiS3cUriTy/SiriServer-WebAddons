@@ -1,0 +1,18 @@
+;index.php
+SERVER_ONLINE=Serveur en ligne
+SERVER_OFFLINE=Server hors-ligne
+HOW_CONNECT=Comment se connecter
+INSTALL_SPIRE=Installer Spire
+INSTALL_CERT=Installer le certificat
+SPIRE_SETTINGS="Entrer : %s dans le champ \"Host\" des réglages de Spire"
+ACTIVATE_SIRI=Activer Siri dans <em>Réglages -> Siri</em>
+
+;twitter.php
+ICLOUD_CHECK="Vous devez synchroniser vos contacts dans le cloud (iCloud ou Exchange) pour utiliser ce service."
+BROWSER_COOKIES=Vous devez utilisez un navigateur supportant les cookies...
+ACCOUNT_REGISTERED=Votre compte a bien été enregistré.
+ERROR_COMMUNICATION_TWITTER=Erreur de communication avec Twitter.
+UNKNOWN_REQUEST=Requête inconnue.
+
+;facebook.php
+ERROR_COMMUNICATION_FACEBOOK=Erreur de communication avec Facebook.

@@ -1,13 +1,12 @@
 <?php
-session_start();
-require "config.php";
+require 'load.php';
 require "libs/twitteroauth/twitteroauth.php";
 require "classes/TwitterConf.class.php";
 if(isset($_GET["id"])) {
 	$id = preg_replace("/[^a-zA-Z0-9-]/", "", $_GET['id']);
 	
 	if(empty($id)) {
-		$message = "Vous devez activer iCloud pour utiliser ce service.";
+		$message = $l10n->t('ICLOUD_CHECK');
 	} else {
 		/* Connect to Twitter and ask for token */
 		$connection = new TwitterOAuth(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET);
@@ -24,14 +23,14 @@ if(isset($_GET["id"])) {
 			header("Location: ".$url.'&oauth_access_type=write');
 			exit;
 		} else {
-			$message = "Erreur de communication avec Twitter.";
+			$message = $l10n->t('ERROR_COMMUNICATION_TWITTER');
 		}
 	}
 }
 else if(isset($_GET["oauth_token"]) && isset($_GET["oauth_verifier"])) {
 
 	if(!isset($_SESSION["id"]) || !isset($_SESSION["oauth_token"]) || !isset($_SESSION["oauth_token_secret"])) {
-		echo "Vous devez utilisez un navigateur supportant les cookies...";
+		echo $l10n->t("BROWSER_COOKIES");
 		exit;
 	}
 
@@ -51,17 +50,16 @@ else if(isset($_GET["oauth_token"]) && isset($_GET["oauth_verifier"])) {
 		$twitterConf = new TwitterConf("twitter.conf");
 		$twitterConf->setToken($id, $access_token["oauth_token"], $access_token["oauth_token_secret"]);
 		$twitterConf->save();
-		$message = "Votre compte a bien été enregistré.";
+		$message = $l10n->t('ACCOUNT_REGISTERED');
 	} else {
-		$message = "Erreur de communication avec Twitter.";
+		$message = $l10n->t('ERROR_COMMUNICATION_TWITTER');
 	}
 }
 else {
-	$message = "Requête inconnue.";
+	$message = $l10n->t("UNKNOWN_REQUEST");
 }
 
 if(isset($message)) {
-	require 'classes/Page.class.php';
 	$page = new Page(SERVER_NAME);
 	$page->printHeader();
 	echo '<p>'.$message.'</p>';

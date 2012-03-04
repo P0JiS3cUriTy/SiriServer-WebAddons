@@ -1,0 +1,18 @@
+﻿;index.php
+SERVER_ONLINE=Server is online
+SERVER_OFFLINE=Server is offline
+HOW_CONNECT=How to connect
+INSTALL_SPIRE=Install Spire
+INSTALL_CERT=Install the certificate
+SPIRE_SETTINGS=Set host to: %s in Spire settings
+ACTIVATE_SIRI=Activate Siri in <em>Settings -> Siri</em>
+
+;twitter.php
+ICLOUD_CHECK="You must sync your contacts in the cloud (iCloud or Exchange) to use this service."
+BROWSER_COOKIES=You must use a browser that supports cookies
+ACCOUNT_REGISTERED=Your account has been registered.
+ERROR_COMMUNICATION_TWITTER=Error while communicating with Twitter.
+UNKNOWN_REQUEST=Unknown request.
+
+;facebook.php
+ERROR_COMMUNICATION_FACEBOOK=Error while communicating with Facebook.
