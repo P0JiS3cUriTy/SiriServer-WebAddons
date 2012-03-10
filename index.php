@@ -18,15 +18,13 @@ if(defined("SERVER_HOST") )
 }
 
 echo '<h2>'.$l10n->t('HOW_CONNECT').'</h2>';
-
-if(file_exists("server.pem"))
-{
-	echo '<ol data-role="listview" data-inset="true">';
-	echo '<li>'.$l10n->t('INSTALL_SPIRE').'</li>';
-	echo '<li>'.sprintf($l10n->t('SPIRE_SETTINGS'), '<strong>https://'.SERVER_HOST.':'.SERVER_PORT.'</strong>').'</li>';
+echo '<ol data-role="listview" data-inset="true">';
+echo '<li>'.$l10n->t('INSTALL_SPIRE').'</li>';
+echo '<li>'.sprintf($l10n->t('SPIRE_SETTINGS'), '<strong>https://'.SERVER_HOST.':'.SERVER_PORT.'</strong>').'</li>';
+if(file_exists("server.pem")){
 	echo '<li><a rel="external" href="server.pem">'.$l10n->t('INSTALL_CERT').'</a></li>';
-	echo '<li>'.$l10n->t('ACTIVATE_SIRI').'</li>';
-	echo '</ul>';
 }
+echo '<li>'.$l10n->t('ACTIVATE_SIRI').'</li>';
+echo '</ul>';
 
 $page->printFooter();
