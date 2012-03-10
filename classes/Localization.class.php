@@ -4,9 +4,10 @@ class Localization {
 	private $lang;
 	private $languages = array();
 	private $defaultLanguage = 'en';
-	private $localeDir = LANG_DIRECTORY;
+	private $localeDir;
 
-	public function __construct() {
+	public function __construct($localeDir) {
+		$this->localeDir = $localeDir;
 		$this->lang = $this->getUserLanguage();
 		if(!file_exists($this->localeDir.$this->lang.'.txt')) {
 			$this->lang = $this->defaultLanguage;
